@@ -9,6 +9,10 @@ exports.createProductImage = async (req, res) => {
     );
     res.status(statusEnum.statusCodes.CREATED).send(newProductImage);
   } catch (error) {
+    console.error(
+      "Error in productImageControlelr - createProductImage:",
+      error
+    );
     res
       .status(statusEnum.statusCodes.INTERNAL_SERVER_ERROR)
       .send(error.message);
@@ -20,6 +24,7 @@ exports.getProductImages = async (req, res) => {
     const productImages = await productImageService.getProductImages();
     res.status(statusEnum.statusCodes.OK).send(productImages);
   } catch (error) {
+    console.error("Error in productImageControlelr - getProductImages:", error);
     res
       .status(statusEnum.statusCodes.INTERNAL_SERVER_ERROR)
       .send(error.message);
@@ -34,6 +39,7 @@ exports.getProductById = async (req, res) => {
     );
     res.status(statusEnum.statusCodes.OK).send(productImage);
   } catch (error) {
+    console.error("Error in productImageControlelr - getProductById:", error);
     res
       .status(statusEnum.statusCodes.INTERNAL_SERVER_ERROR)
       .send(error.message);
@@ -46,6 +52,10 @@ exports.deleteProductImage = async (req, res) => {
     await productImageService.deleteProductImage(productImageId);
     res.status(statusEnum.statusCodes.NO_CONTENT).send();
   } catch (error) {
+    console.error(
+      "Error in productImageControlelr - deleteProductImage:",
+      error
+    );
     res
       .status(statusEnum.statusCodes.INTERNAL_SERVER_ERROR)
       .send(error.message);
@@ -59,6 +69,10 @@ exports.updateProductImage = async (req, res) => {
     await productImageService.updateProductImage(productImageId, productImage);
     res.status(statusEnum.statusCodes.NO_CONTENT).send();
   } catch (error) {
+    console.error(
+      "Error in productImageControlelr - updateProductImage:",
+      error
+    );
     res
       .status(statusEnum.statusCodes.INTERNAL_SERVER_ERROR)
       .send(error.message);
